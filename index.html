@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>page</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff; /* Фон строго белый */
+            overflow: hidden;
+        }
+
+        /* Позиционируем гифку строго в нижнем левом углу */
+        .emoji-wave {
+            position: fixed;
+            bottom: 20px; 
+            left: 20px;   
+            width: 200px; /* Увеличили размер со 100px до 200px */
+            height: auto;
+            z-index: 9999;
+
+            /* Запрещаем захват, перетаскивание и выделение картинки мышкой */
+            user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Добавили draggable="false", чтобы браузер намертво блокировал перетаскивание -->
+    <img src="emoji-wave.gif" alt="Приветствие" class="emoji-wave" draggable="false">
+
+    <script>
+        // Код для вращения диска во вкладке
+        const frames = [
+            "frame_0_delay-0.12s.gif",
+            "frame_1_delay-0.12s.gif",
+            "frame_2_delay-0.12s.gif",
+            "frame_4_delay-0.12s.gif",
+            "frame_5_delay-0.12s.gif",
+            "frame_6_delay-0.12s.gif",
+            "frame_7_delay-0.12s.gif"
+        ];
+
+        let currentFrame = 0;
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/gif';
+        document.head.appendChild(favicon);
+
+        setInterval(() => {
+            favicon.href = frames[currentFrame];
+            currentFrame = (currentFrame + 1) % frames.length;
+        }, 120);
+    </script>
+</body>
+</html>
